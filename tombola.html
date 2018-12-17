@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//aggiunge un nuovo metodo alla classe array
+var throwed=0
+Array.prototype.randomElement=function(){
+	return this[Math.floor(Math.random() * this.length)]
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+</script>
+
+
+
+<script>
+/////////////////////////////////////////////////////////////////////////////////////////////////
+function print(text){
+	document.write(text)
+}
+
+
+function estrai(){
+	
+	if (throwed>=90)alert('tombola terminata ricaricare la pagina per giocare ancora')
+	var num=tombolone.randomElement()
+	tombolone.splice(tombolone.indexOf(num),1)
+	document.getElementById(num).style.backgroundColor='brown'
+	
+	document.getElementById('b'+num).style.backgroundColor='salmon'
+	throwed++
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+</script>
+
+<script>
+var tombolone=[]
+for (k=1;k<=90;k++)
+	tombolone.push(k)
+	//sarebbe l'append() del python
+</script>
+
+<script>
+////////////////////////////////////////////////////////////////////////////////////////////////
+function Cartella (){
+	this.tab=[]
+	this.newEl
+	///////////////////////////////////////////
+	this.generaCartella=function(){
+	
+	//array che contiene gli elementi già inseriti nell'array
+		this.tab[0]=[]
+		this.tab[1]=[]
+		this.tab[2]=[]
+ 		print('<table border="1" bgcolor="yellow">')
+		for(r=0;r<3;r++){
+		print('<tr>')
+			for(c=0;c<5;c++){
+				this.newEl=tombolone.randomElement()
+				while(this.tab[0].includes(this.newEl)||this.tab[1].includes(this.newEl)||this.tab[2].includes(this.newEl)) {
+					this.newEl=tombolone.randomElement()
+				}
+			
+			
+				this.tab[r][c]=this.newEl
+				print('<td id=\"b'+this.newEl+'\">')
+				print(this.newEl)
+				print('</td>')
+				}
+		
+			print('</tr>')
+		}
+		print('</table>')
+		return true
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+</script>
+
+
+	<title>tombola</title>
+</head>
+<body>
+<script>
+print('<table border="11" bgcolor="sky blue">')
+for (i=0;i<9;i++){
+	if(i==3||i==6){
+		print('<tr>')
+		print('<td colspan="11">   </td></tr>')
+	}
+	print('<tr>')
+	for (j=1;j<=10;j++){
+		
+		if(j==6){
+			print('<td>   </td>')
+		}
+		
+		print('<td id=\"'+((i*10)+j)+'\" '+'<strong>'+((i*10)+j)+'</strong>'+'</td>')
+		
+	}
+	
+}
+print ('<tr><td colspan="11" align="right">')
+print('ESTRAI')
+print('<form><input name="extractor" type="button" value="estrai" onClick="estrai()">')
+print('</td>')
+print('</tr>')
+
+print('</table>')
+
+print('<br><br>')
+var cart1=new Cartella()
+cart1.generaCartella()
+
+print(' --------------')
+var cart2=new Cartella()
+cart2.generaCartella()
+
+print(' --------------')
+var cart3=new Cartella()
+cart3.generaCartella()
+
+print(' --------------')
+var cart4=new Cartella()
+cart4.generaCartella()
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
