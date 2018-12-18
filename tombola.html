@@ -14,13 +14,12 @@ Array.prototype.randomElement=function(){
 
 
 
+
 <script>
 /////////////////////////////////////////////////////////////////////////////////////////////////
 function print(text){
 	document.write(text)
 }
-
-
 function estrai(){
 	
 	if (throwed>=90)alert('tombola terminata ricaricare la pagina per giocare ancora')
@@ -29,12 +28,24 @@ function estrai(){
 	document.getElementById(num).style.backgroundColor='brown'
 	
 	document.getElementById('b'+num).style.backgroundColor='salmon'
+	for(h=0;h<player;h++){
+		for(d=0;d<3;d++){
+			if(cart[h].tab[d].includes(num)){
+				cart[h].ca[d]++
+				
+			}
+		}
+	}
+	for(q=0;q<player;q++){
+		cart[q].check(q)
+	}
 	throwed++
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 </script>
 
 <script>
+var player=prompt("Numero di giocatori")
 var tombolone=[]
 for (k=1;k<=90;k++)
 	tombolone.push(k)
@@ -46,6 +57,32 @@ for (k=1;k<=90;k++)
 function Cartella (){
 	this.tab=[]
 	this.newEl
+	this.ca=[0,0,0]
+	this.span
+	this.tot
+	this.check=function(play){
+		this.tot=0
+		for(w=0;w<3;w++){
+			if(this.ca[w]==2){
+				this.span+="ambo "
+			}
+			if(this.ca[w]==3){
+				this.span+="terna "
+			}
+			if(this.ca[w]==4){
+				this.span+="quaterna "
+			}
+			if(this.ca[w]==5){
+				this.span+="cinquina "
+				
+			}
+			tot+=this.ca[w]
+			if (tot=15)this.span+="tombola "
+			
+		}
+		document.getElementById(play+'f').innerHTML='this.span'
+	}
+	
 	///////////////////////////////////////////
 	this.generaCartella=function(){
 	
@@ -60,6 +97,7 @@ function Cartella (){
 				this.newEl=tombolone.randomElement()
 				while(this.tab[0].includes(this.newEl)||this.tab[1].includes(this.newEl)||this.tab[2].includes(this.newEl)) {
 					this.newEl=tombolone.randomElement()
+					
 				}
 			
 			
@@ -106,31 +144,30 @@ print('ESTRAI')
 print('<form><input name="extractor" type="button" value="estrai" onClick="estrai()">')
 print('</td>')
 print('</tr>')
-
 print('</table>')
-
 print('<br><br>')
-var cart1=new Cartella()
-cart1.generaCartella()
 
-print(' --------------')
-var cart2=new Cartella()
-cart2.generaCartella()
+var cart=[]
+print('<table> <tr>')
+for(p=0;p<player;p++){
+	print('<td>')
+	cart[p]=new Cartella
+	cart[p].generaCartella()
+	print('<br><br>')
+	print('</td>')
+	
+}
+print('</tr>')
+print('<tr>')
+for(p=0;p<player;p++){
+	print('<td id=\"'+p+'f\">')
+	print(' punto ')
+	print('</td>')
+	
+}
 
-print(' --------------')
-var cart3=new Cartella()
-cart3.generaCartella()
 
-print(' --------------')
-var cart4=new Cartella()
-cart4.generaCartella()
-
-
-
+print('</tr></table>')
 </script>
-
-
-
-
 </body>
 </html>
